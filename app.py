@@ -2,7 +2,6 @@ import streamlit as st
 import re
 import random
 import string
-import pyperclip  # For copying text to clipboard
 
 # Function to check password strength and provide recommendations
 def check_strength(password):
@@ -84,9 +83,7 @@ if st.button("Generate Password"):
 # Display generated password if available
 if "generated_password" in st.session_state:
     generated_password = st.session_state["generated_password"]
-    st.text_input("Generated Password:", generated_password, key="password_display")
+    
+    # Use st.code which provides a copy button automatically
+    st.code(generated_password, language="")
 
-    # Copy to Clipboard Button using Pyperclip
-    if st.button("Copy to Clipboard"):
-        pyperclip.copy(generated_password)
-        st.success("✅ Password copied to clipboard!")
